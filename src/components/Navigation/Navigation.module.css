@@ -1,0 +1,22 @@
+.nav {
+    display: flex;
+    gap: 25px;
+    justify-content: end;
+    margin-bottom: 30px;
+
+}
+
+.link {
+    display: flex;
+    background-color: transparent;
+    padding: 5px 15px;
+    border-radius: 8px;
+    color: white;
+}
+
+.active {
+    transform: scale(1.2);
+    background-color: rgba(150, 140, 140, 0.306);
+    border-bottom: 1px solid rgb(9, 217, 186);
+    color: rgb(9, 217, 186);
+}

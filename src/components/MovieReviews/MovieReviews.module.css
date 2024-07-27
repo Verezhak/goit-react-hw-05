@@ -1,0 +1,11 @@
+.text {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 18px;
+
+    span {
+        font-size: 32px;
+        color: rgb(9, 217, 186);
+    }
+}
