@@ -9,6 +9,7 @@ const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [noMovies, setNoMovies] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
@@ -23,7 +24,8 @@ const MoviesPage = () => {
     const handleSearch = async (searchQuery, updateURL = true) => {
         if (searchQuery.trim() === '') {
             setMovies([]);
-            setError('Do not found movies, Please Try again!');
+            setError(false);
+            setNoMovies(true);
             return;
         }
 
@@ -31,6 +33,7 @@ const MoviesPage = () => {
             const results = await searchMovies(searchQuery);
             setMovies(results);
             setError(null);
+            setNoMovies(false);
 
             if (updateURL) {
                 searchParams.set('query', searchQuery);
@@ -64,7 +67,8 @@ const MoviesPage = () => {
                 />
                 <button type="submit">Search</button>
             </form>
-            {error && <p className={s.text}>{error}</p>}
+            {error && <p className={s.error}>{error}</p>}
+            {noMovies && !error && <p className={s.error}>Do not found movies, Please Try again!</p>}
             {movies.length > 0 && <MovieList movies={movies} />}
         </div>
     );
