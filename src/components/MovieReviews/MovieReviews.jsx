@@ -19,22 +19,39 @@ const MovieReviews = () => {
         };
 
         getReviews();
+
     }, [movieId]);
+
+
 
     if (error) {
         return <p>{error}</p>;
     }
 
     return (
+
         <div>
-            <ul>
-                {reviews.map((review) => (
-                    <li key={review.id}>
-                        <p className={s.text}><span>Author: {review.author}!</span> {review.content}</p>
-                    </li>
-                ))}
-            </ul>
+            {reviews.length > 0 ? (
+                <ul>
+                    {reviews.map((review) => (
+                        <li key={review.id}>
+                            <p className={s.text}><span>Author: {review.author}:</span> {review.content}</p>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p className={s.noReviews}>No reviews available for this movie.</p>
+            )}
         </div>
+        // <div>
+        //     <ul>
+        //         {reviews.map((review) => (
+        //             <li key={review.id}>
+        //                 <p className={s.text}><span>Author: {review.author}!</span> {review.content}</p>
+        //             </li>
+        //         ))}
+        //     </ul>
+        // </div>
     );
 };
 
