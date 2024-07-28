@@ -8,14 +8,17 @@ const buildLinkClass = ({ isActive }) => {
 
 const Navigation = () => {
     return (
-        <nav>
-            <ul className={s.nav}>
-                <li> <NavLink className={buildLinkClass} to="/">
-                    Home
-                </NavLink></li>
-                <li><NavLink className={buildLinkClass} to="/movies">Movies</NavLink></li>
-            </ul>
-        </nav>
+        <div className={s.header}>
+            <p>FilmQuest</p>
+            <nav>
+                <ul className={s.nav}>
+                    <li> <NavLink className={buildLinkClass} to="/">
+                        Home
+                    </NavLink></li>
+                    <li><NavLink className={buildLinkClass} to="/movies">Movies</NavLink></li>
+                </ul>
+            </nav>
+        </div>
 
 
     )

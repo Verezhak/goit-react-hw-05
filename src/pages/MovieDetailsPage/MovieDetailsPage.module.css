@@ -64,6 +64,7 @@
     }
 
     .active {
+        transform: scale(1.2);
         background-color: rgba(150, 140, 140, 0.306);
         border-bottom: 1px solid rgb(9, 217, 186);
         color: rgb(9, 217, 186);
