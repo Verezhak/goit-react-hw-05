@@ -28,6 +28,7 @@
     display: flex;
     background-color: transparent;
     padding: 5px 15px;
+    font-size: 24px;
     border-radius: 8px;
     color: white;
 }
@@ -44,17 +45,16 @@
         padding: 10px;
 
         p {
-            font-weight: bold;
             font-size: 18px;
-            color: rgb(9, 217, 186);
         }
-    }
-
-    .container {
-        flex-direction: column;
     }
 
     .nav {
         gap: 10px;
+    }
+
+    .link {
+        padding: 3px 5px;
+        font-size: 12px;
     }
 }
