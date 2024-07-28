@@ -43,15 +43,7 @@ const MovieReviews = () => {
                 <p className={s.noReviews}>No reviews available for this movie.</p>
             )}
         </div>
-        // <div>
-        //     <ul>
-        //         {reviews.map((review) => (
-        //             <li key={review.id}>
-        //                 <p className={s.text}><span>Author: {review.author}!</span> {review.content}</p>
-        //             </li>
-        //         ))}
-        //     </ul>
-        // </div>
+
     );
 };
 
