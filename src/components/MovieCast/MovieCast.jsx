@@ -7,36 +7,40 @@ const MovieCast = () => {
     const { movieId } = useParams();
     const [cast, setCast] = useState([]);
     const [error, setError] = useState(null);
+    const [noCast, setNoCast] = useState(false);
 
     useEffect(() => {
         const fetchCredits = async () => {
             try {
                 const data = await fetchMovieCredits(movieId);
-                setCast(data);
+                if (data.length === 0) {
+                    setNoCast(true);
+                } else {
+                    setCast(data);
+                    setNoCast(false);
+                }
+                setError(null);
             } catch (error) {
                 setError('Failed to fetch movie credits.');
+                setNoCast(false);
             }
         };
 
         fetchCredits();
     }, [movieId]);
 
-    if (error) {
-        return <p>{error}</p>;
-    }
 
     return (
         <div>
-            {cast.length > 0 ? (
-                <ul>
-                    {cast.map((actor) => (
-                        <li key={actor.cast_id}>
-                            <p className={s.text}>{actor.name}</p>
-                        </li>
-                    ))}
-                </ul>) : (
-                <p className={s.noCast}>Sorry, cast is missing.</p>
-            )}
+            {error && <p className={s.error}>{error}</p>}
+            {noCast && !error && <p className={s.error}>Sorry, cast is missing.</p>}
+            <ul>
+                {cast.map((actor) => (
+                    <li key={actor.cast_id}>
+                        <p className={s.text}>{actor.name}</p>
+                    </li>
+                ))}
+            </ul>
         </div>
 
     );

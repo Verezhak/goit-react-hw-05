@@ -2,49 +2,49 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from '../../services/api';
-import s from './MovieReviews.module.css'
+import s from './MovieReviews.module.css';
+
+
+
+
 const MovieReviews = () => {
     const { movieId } = useParams();
     const [reviews, setReviews] = useState([]);
     const [error, setError] = useState(null);
+    const [noReviews, setNoReviews] = useState(false);
 
     useEffect(() => {
         const getReviews = async () => {
             try {
                 const data = await fetchMovieReviews(movieId);
-                setReviews(data);
+                if (data.length === 0) {
+                    setNoReviews(true);
+                } else {
+                    setReviews(data);
+                    setNoReviews(false);
+                }
+                setError(null);
             } catch (err) {
                 setError('Failed to fetch reviews.');
+                setNoReviews(false);
             }
         };
 
         getReviews();
-
     }, [movieId]);
 
-
-
-    if (error) {
-        return <p>{error}</p>;
-    };
-
-
     return (
-
         <div>
-            {reviews.length > 0 ? (
-                <ul>
-                    {reviews.map((review) => (
-                        <li key={review.id}>
-                            <p className={s.text}><span>Author: {review.author}:</span> {review.content}</p>
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p className={s.noReviews}>No reviews available for this movie.</p>  // Текст, якщо немає відгуків
-            )}
+            {error && <p className={s.error}>{error}</p>}
+            {noReviews && !error && <p className={s.error}>No reviews available for this movie.</p>}
+            <ul>
+                {reviews.map((review) => (
+                    <li key={review.id}>
+                        <p className={s.text}><span>Author: {review.author}:</span> {review.content}</p>
+                    </li>
+                ))}
+            </ul>
         </div>
-
     );
 };
 
