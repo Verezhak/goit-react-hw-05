@@ -6,10 +6,24 @@ import s from './MovieCast.module.css'
 const MovieCast = () => {
     const { movieId } = useParams();
     const [cast, setCast] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetchMovieCredits(movieId).then(setCast);
+        const fetchCredits = async () => {
+            try {
+                const data = await fetchMovieCredits(movieId);
+                setCast(data);
+            } catch (error) {
+                setError('Failed to fetch movie credits.');
+            }
+        };
+
+        fetchCredits();
     }, [movieId]);
+
+    if (error) {
+        return <p>{error}</p>;
+    }
 
     return (
         <div>

@@ -44,7 +44,7 @@ const MovieDetailsPage = () => {
     }
     return (
         <>
-            <Link className={s.link} to={goBackRef.current}>Go back!</Link>
+            <Link className={s.btn} to={goBackRef.current}>Go back!</Link>
             <div className={s.container}>
                 <img
                     src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}

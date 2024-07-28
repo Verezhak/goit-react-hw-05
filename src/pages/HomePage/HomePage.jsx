@@ -3,26 +3,33 @@ import MoviesList from '../../components/MoviesList/MoviesList';
 import { fetchTrendingMovies } from '../../services/api';
 import s from './HomePage.module.css'
 const HomePage = () => {
+
     const [movies, setMovies] = useState([]);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
-        try {
-            const getData = async () => {
+        const getData = async () => {
+            try {
                 const data = await fetchTrendingMovies();
                 setMovies(data);
-            };
-            getData();
+            } catch (error) {
+                setError('Error fetching trending movies. Please try again later.');
+            }
+        };
 
-        } catch (error) {
-            console.log(error);
-        }
+        getData();
     }, []);
+
     return (
         <div>
             <h2 className={s.title}>The most current movies:</h2>
-            <MoviesList movies={movies} />
+            {error ? <p>{error}</p> : <MoviesList movies={movies} />}
         </div>
-    )
+    );
 }
 
-export default HomePage
+export default HomePage;
+
+
+
 

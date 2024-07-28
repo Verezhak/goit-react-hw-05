@@ -6,10 +6,24 @@ import s from './MovieReviews.module.css'
 const MovieReviews = () => {
     const { movieId } = useParams();
     const [reviews, setReviews] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetchMovieReviews(movieId).then(setReviews);
+        const getReviews = async () => {
+            try {
+                const data = await fetchMovieReviews(movieId);
+                setReviews(data);
+            } catch (err) {
+                setError('Failed to fetch reviews.');
+            }
+        };
+
+        getReviews();
     }, [movieId]);
+
+    if (error) {
+        return <p>{error}</p>;
+    }
 
     return (
         <div>
