@@ -27,14 +27,18 @@ const MovieCast = () => {
 
     return (
         <div>
-            <ul>
-                {cast.map((actor) => (
-                    <li key={actor.cast_id}>
-                        <p className={s.text}>{actor.name}</p>
-                    </li>
-                ))}
-            </ul>
+            {cast.length > 0 ? (
+                <ul>
+                    {cast.map((actor) => (
+                        <li key={actor.cast_id}>
+                            <p className={s.text}>{actor.name}</p>
+                        </li>
+                    ))}
+                </ul>) : (
+                <p className={s.noCast}>Sorry, cast is missing.</p>
+            )}
         </div>
+
     );
 };
 

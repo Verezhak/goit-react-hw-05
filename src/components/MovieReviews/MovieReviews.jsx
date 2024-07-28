@@ -26,7 +26,8 @@ const MovieReviews = () => {
 
     if (error) {
         return <p>{error}</p>;
-    }
+    };
+
 
     return (
 
@@ -40,7 +41,7 @@ const MovieReviews = () => {
                     ))}
                 </ul>
             ) : (
-                <p className={s.noReviews}>No reviews available for this movie.</p>
+                <p className={s.noReviews}>No reviews available for this movie.</p>  // Текст, якщо немає відгуків
             )}
         </div>
 

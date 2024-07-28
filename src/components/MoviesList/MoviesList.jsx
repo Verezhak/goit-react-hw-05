@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import s from './MoviesList.module.css'
+import s from './MoviesList.module.css';
+
+
 const MovieList = ({ movies }) => {
   const location = useLocation();
   return (
