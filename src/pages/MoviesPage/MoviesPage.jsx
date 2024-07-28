@@ -23,7 +23,7 @@ const MoviesPage = () => {
     const handleSearch = async (searchQuery, updateURL = true) => {
         if (searchQuery.trim() === '') {
             setMovies([]);
-            setError(null);
+            setError('Do not found movies, Please Try again!');
             return;
         }
 
@@ -64,7 +64,7 @@ const MoviesPage = () => {
                 />
                 <button type="submit">Search</button>
             </form>
-            {error && <p>{error}</p>}
+            {error && <p className={s.text}>{error}</p>}
             {movies.length > 0 && <MovieList movies={movies} />}
         </div>
     );
